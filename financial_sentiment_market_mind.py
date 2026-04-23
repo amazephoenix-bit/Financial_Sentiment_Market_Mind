@@ -13,8 +13,15 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import re
 
-nltk.download('stopwords')
-nltk.download('wordnet')
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
+try:
+    nltk.data.find('corpora/wordnet')
+except LookupError:
+    nltk.download('wordnet')
 
 from google.colab import files
 uploaded = files.upload()
@@ -72,7 +79,12 @@ print(predict_sentiment("Company reports strong quarterly earnings"))
 print(predict_sentiment("Company faces major lawsuit and losses"))
 
 import spacy
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except:
+    import os
+    os.system("python -m spacy download en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
 
 def extract_companies(text):
     doc = nlp(text)
