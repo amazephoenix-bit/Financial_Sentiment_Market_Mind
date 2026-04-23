@@ -23,8 +23,6 @@ try:
 except LookupError:
     nltk.download('wordnet')
 
-from google.colab import files
-uploaded = files.upload()
 
 df = pd.read_csv("data.csv")
 df.head()
