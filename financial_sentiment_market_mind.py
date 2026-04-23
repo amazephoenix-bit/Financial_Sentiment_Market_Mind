@@ -122,7 +122,7 @@ print(analyze_news(news))
   {"company": "Apple", "ticker": "AAPL", "sentiment": "negative"}
 ]
 
-!pip install feedparser
+
 import feedparser
 
 url = "https://finance.yahoo.com/rss/topstories"
@@ -151,7 +151,7 @@ results_df
 summary = results_df.groupby("ticker")["sentiment"].value_counts().unstack().fillna(0)
 summary
 
-!pip install streamlit
+
 import streamlit as st
 
 st.title("📈 Market-Mind Dashboard")
@@ -200,7 +200,7 @@ st.divider()
 st.subheader("📄 Latest Headlines Data")
 st.dataframe(df, use_container_width=True)
 
-!pip install streamlit-autorefresh
+
 from streamlit_autorefresh import st_autorefresh
 
 st_autorefresh(interval=30000, key="datarefresh")
